@@ -86,6 +86,8 @@ public class PlayerController : MonoBehaviour
 
     private void GroundCheck()
     {
+        // A sphere, centered at position of ground, with radius of checkDistance, where groundMask is the collision object,
+        // of ground we are checking.
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundMask);
     }
 
