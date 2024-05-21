@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Shoot")]
     [SerializeField] private Rigidbody bulletPrefab;
+    [SerializeField] private Rigidbody rocketPrefab;
     [SerializeField] private float shootForce;
     [SerializeField] private Transform shootPoint;
 
@@ -118,6 +119,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Rigidbody bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            // ForceMode.Impulse allows the bullet to travel a lot faster
+            bullet.AddForce(shootPoint.forward * shootForce, ForceMode.Impulse);
+            Destroy(bullet.gameObject, 5.0f);
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Rigidbody bullet = Instantiate(rocketPrefab, shootPoint.position, shootPoint.rotation);
             // ForceMode.Impulse allows the bullet to travel a lot faster
             bullet.AddForce(shootPoint.forward * shootForce, ForceMode.Impulse);
             Destroy(bullet.gameObject, 5.0f);
