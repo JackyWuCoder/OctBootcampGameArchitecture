@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     // Interaction Raycasts
     private RaycastHit hit;
+    private ISelectable selection;
 
     private void Awake()
     {
@@ -149,6 +151,20 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("We hit " + hit.collider.name);
             Debug.DrawRay(ray.origin, ray.direction * interactionDistance, Color.red);
+            selection = hit.transform.GetComponent<ISelectable>();
+            if (selection != null)
+            {
+                selection.OnHoverEnter();
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    selection.OnSelect();
+                }
+            }
+        }
+        if (hit.transform == null && selection != null)
+        {
+            selection.OnHoverExit();
+            selection = null;
         }
     }
 }
