@@ -25,6 +25,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shootForce;
     [SerializeField] private Transform shootPoint;
 
+    [Header("Interaction")]
+    [SerializeField] private Camera cam;
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private float interactionDistance;
+
     private CharacterController characterController;
     private float horizontalInput, verticalInput;
     private float mouseX, mouseY;
