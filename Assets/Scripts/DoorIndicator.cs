@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,8 @@ public class DoorIndicator : MonoBehaviour
     public UnityEvent onUnlocked;
 
     private bool isLocked = true;
+
+    [SerializeField] private GameObject frontDoor;
 
     void Start()
     {
@@ -41,6 +44,14 @@ public class DoorIndicator : MonoBehaviour
         {
             GetComponent<Renderer>().material.color = unlockedColor;
             onUnlocked.Invoke();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isLocked && other.gameObject.CompareTag("Player"))
+        {
+            frontDoor.SetActive(false);
         }
     }
 }
