@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private Vector3 playerVelocity;
 
+    // Interaction Raycasts
+    private RaycastHit hit;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -62,6 +65,7 @@ public class PlayerController : MonoBehaviour
         JumpCheck();
 
         Shoot();
+        Interact();
     }
 
     private void GetInput()
@@ -134,6 +138,17 @@ public class PlayerController : MonoBehaviour
             // ForceMode.Impulse allows the bullet to travel a lot faster
             bullet.AddForce(shootPoint.forward * shootForce, ForceMode.Impulse);
             Destroy(bullet.gameObject, 5.0f);
+        }
+    }
+
+    private void Interact()
+    {
+        // Cast a ray from middle of camera.
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2));
+        if (Physics.Raycast(ray, out hit, interactionDistance, layerMask))
+        {
+            Debug.Log("We hit " + hit.collider.name);
+            Debug.DrawRay(ray.origin, ray.direction * interactionDistance, Color.red);
         }
     }
 }

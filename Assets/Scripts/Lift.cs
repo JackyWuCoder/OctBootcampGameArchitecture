@@ -45,10 +45,12 @@ public class Lift : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.L))
         {
             ToggleLift();
         }
+        */
         if (isMoving)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, moveSpeed * Time.fixedDeltaTime);
