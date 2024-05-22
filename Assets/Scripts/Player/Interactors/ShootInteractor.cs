@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootInteractor : Interactor
 {
     [Header("Player Shoot")]
+    [SerializeField] private ObjectPool pool;
     [SerializeField] private Rigidbody bulletPrefab;
     [SerializeField] private float shootVelocity;
     [SerializeField] private Transform shootPoint;
@@ -32,9 +33,20 @@ public class ShootInteractor : Interactor
     private void Shoot()
     {
         finalShootVelocity = playerMovementBehaviour.GetForwardSpeed() + shootVelocity;
-        Rigidbody bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+
+        PooledObject pooledObject = pool.GetPooledObject();
+        pooledObject.gameObject.SetActive(true);
+
+        //Rigidbody bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+
+        Rigidbody bullet = pooledObject.GetComponent<Rigidbody>();
+        bullet.transform.position = shootPoint.position;
+        bullet.transform.rotation = shootPoint.rotation;
+
         // ForceMode.Impulse allows the bullet to travel a lot faster
         bullet.velocity = shootPoint.forward * finalShootVelocity;
-        Destroy(bullet.gameObject, 5.0f);
+
+        //Destroy(bullet.gameObject, 5.0f);
+        pool.DestroyObjectFromPool(pooledObject, 5.0f);
     }
 }

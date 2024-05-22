@@ -97,8 +97,7 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -1286157043505244210, guid: e3688e4e15b946346b879725a252c688, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3688e4e15b946346b879725a252c688, type: 3}
 --- !u!1 &6768699538172957767 stripped
 GameObject:
@@ -106,7 +105,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8753863824969423492}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-8135944098428854773
+--- !u!114 &-1261729450317175961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,6 +114,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6768699538172957767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f523c46c1ef2d9643ab2556e36a4095d, type: 3}
+  m_Script: {fileID: 11500000, guid: 606284d550dc47d4e8fac3d5a0c0ee84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToPool: {fileID: 0}
+  startSize: 0
+  activePool: []
+  usedPool: []
