@@ -21,8 +21,7 @@ public class PlayerMovementBehaviour : MonoBehaviour
     public bool isGrounded { get; private set; }
     private float moveMultiplier = 1.0f;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         characterController = GetComponent<CharacterController>();
     }
@@ -55,5 +54,10 @@ public class PlayerMovementBehaviour : MonoBehaviour
 
         playerVelocity.y += gravity * Time.deltaTime;
         characterController.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public void SetYVelocity(float value)
+    {
+        playerVelocity.y = value;
     }
 }

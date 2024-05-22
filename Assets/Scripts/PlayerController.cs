@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform groundCheck;//Y
     [SerializeField] private LayerMask groundMask;//Y
     [SerializeField] private float groundCheckDistance;//Y
-    [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private float jumpVelocity;
+    [SerializeField] private float gravity = -9.81f;//Y
+    [SerializeField] private float jumpVelocity;//Y
 
     [Header("Player Shoot")]
     [SerializeField] private Rigidbody bulletPrefab;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
     private void RotatePlayer()
     {
         //Player turn movement
-        transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * mouseX);
+        transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * mouseX);//Y
 
         //Camera up/down movement
         camXRotation += Time.deltaTime * mouseY * turnSpeed * (invertMouse ? 1 : -1);
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         // A sphere, centered at position of ground, with radius of checkDistance, where groundMask is the collision object,
         // of ground we are checking.
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundMask);
-    }
+    }//Y
 
     private void JumpCheck()
     {
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         {
             playerVelocity.y = jumpVelocity;
         }
-    }
+    }//Y
 
     // Used to check the visibility for collision using GroundCheck()
     private void OnDrawGizmos()

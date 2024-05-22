@@ -10,6 +10,7 @@ public class PlayerInput : MonoBehaviour
     public float mouseX { get; private set; }
     public float mouseY { get; private set; }
     public bool sprintHeld { get; private set; }
+    public bool jumpPressed { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -31,5 +32,6 @@ public class PlayerInput : MonoBehaviour
         mouseY = Input.GetAxis("Mouse Y");
 
         sprintHeld = sprintHeld || Input.GetButton("Sprint");
+        jumpPressed = jumpPressed | Input.GetButtonDown("Jump");
     }
 }
