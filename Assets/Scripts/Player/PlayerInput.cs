@@ -17,6 +17,24 @@ public class PlayerInput : MonoBehaviour
 
     public bool clear;
 
+    //Singleton
+    private static PlayerInput instance;
+
+    public static PlayerInput GetInstance()
+    {
+        return instance;
+    }
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +80,7 @@ public class PlayerInput : MonoBehaviour
         jumpPressed = jumpPressed | Input.GetButtonDown("Jump");
 
         activatePressed = activatePressed || Input.GetKeyDown(KeyCode.E);
-        primaryButtonPressed = primaryButtonPressed || Input.GetButton("Fire1");
-        secondaryButtonPressed = secondaryButtonPressed || Input.GetButton("Fire2");
+        primaryButtonPressed = primaryButtonPressed || Input.GetButtonDown("Fire1");
+        secondaryButtonPressed = secondaryButtonPressed || Input.GetButtonDown("Fire2");
     }
 }
