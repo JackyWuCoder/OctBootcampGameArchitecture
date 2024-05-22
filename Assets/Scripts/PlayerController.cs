@@ -27,16 +27,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform shootPoint;//Y
 
     [Header("Select Interaction")]
-    [SerializeField] private Camera cam;
-    [SerializeField] private LayerMask interactionLayerMask;
-    [SerializeField] private float interactionDistance;
+    [SerializeField] private Camera cam;//Y
+    [SerializeField] private LayerMask interactionLayerMask;//Y
+    [SerializeField] private float interactionDistance;//Y
 
     [Header("Pickup Interaction")]
-    [SerializeField] private LayerMask pickupLayerMask;
-    [SerializeField] private float pickupDistance;
-    [SerializeField] private Transform attachTransform;
-
-    private bool isPicked = false;
+    [SerializeField] private LayerMask pickupLayerMask;//Y
+    [SerializeField] private float pickupDistance;//Y
+    [SerializeField] private Transform attachTransform;//Y
 
     private CharacterController characterController;//Y
     private float horizontalInput, verticalInput;//Y
@@ -47,9 +45,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;//Y
 
     // Interaction Raycasts
-    private RaycastHit hit;
-    private ISelectable selection;
-    private IPickable pickable;
+    private RaycastHit hit;//Y
+    private ISelectable selection;//Y
+    private IPickable pickable;//Y
+
+    private bool isPicked = false; //Y
 
     private void Awake()
     {
@@ -197,11 +197,11 @@ public class PlayerController : MonoBehaviour
             pickable.OnDropped();
             isPicked = false;
         }
-    }
+    }//Y
 
     private Ray GetCamRay()
     {
         Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         return ray;
-    }
+    }//Y
 }
