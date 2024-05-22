@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform[] targetPoints;
+    [SerializeField] private Transform targetPointsParent;
 
     [Range(0f, 0.5f)]
     [SerializeField] private float accuracy = 0.1f;
@@ -17,10 +18,20 @@ public class Enemy : MonoBehaviour
     private int currentTarget = 0;
     private NavMeshAgent agent;
 
+    public void GetTargetPositions()
+    {
+        targetPoints = new Transform[targetPointsParent.childCount];
+        for (int i = 0; i < targetPointsParent.childCount; i++)
+        {
+            targetPoints[i] = targetPointsParent.GetChild(i);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        GetTargetPositions();
         agent.destination = targetPoints[currentTarget].position;
     }
 
