@@ -171,4 +171,12 @@ public class Enemy : MonoBehaviour
         // Set new enemy position
         agent.destination = targetPoints[currentTarget].position;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(enemyEye.position, checkRadius);
+        Gizmos.DrawWireSphere(enemyEye.position + enemyEye.forward * playerDistance, checkRadius);
+        Gizmos.DrawLine(enemyEye.position, enemyEye.position + enemyEye.forward * playerDistance);
+    }
 }
