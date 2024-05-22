@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Movement")]
     [SerializeField] private float moveSpeed = 10.0f;//Y
-    [SerializeField] private float turnSpeed = 10.0f;
-    [SerializeField] private Transform cameraTransform;
-    [SerializeField] private bool invertMouse;
+    [SerializeField] private float turnSpeed = 10.0f;//Y
+    [SerializeField] private Transform cameraTransform;//-
+    [SerializeField] private bool invertMouse;//Y
     [SerializeField] private float sprintMultiplier = 2.0f; //Y
 
     [Header("Player Jump")]
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput, verticalInput;//Y
     private float mouseX, mouseY;//Y
     private float moveMultiplier = 1.0f;//Y
-    private float camXRotation;
+    private float camXRotation;//Y
     private bool isGrounded;//Y
     private Vector3 playerVelocity;//Y
 
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         //Hide Mouse
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
+    }//Y
 
     // Update is called once per frame
     void Update()
