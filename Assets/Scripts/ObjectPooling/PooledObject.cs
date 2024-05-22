@@ -41,7 +41,7 @@ public class PooledObject : MonoBehaviour
     {
         if (associatedPool != null)
         {
-            //Restore Object
+            associatedPool.RestoreObject(this);
         }
     }
 
