@@ -6,7 +6,7 @@ public class ShootInteractor : Interactor
 {
     [Header("Player Shoot")]
     [SerializeField] private Rigidbody bulletPrefab;
-    [SerializeField] private float shootForce;
+    [SerializeField] private float shootVelocity;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private PlayerMovementBehaviour playerMovementBehaviour;
 
@@ -31,10 +31,10 @@ public class ShootInteractor : Interactor
 
     private void Shoot()
     {
-        finalShootVelocity = playerMovementBehaviour.GetForwardSpeed() * shootForce;
+        finalShootVelocity = playerMovementBehaviour.GetForwardSpeed() + shootVelocity;
         Rigidbody bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
         // ForceMode.Impulse allows the bullet to travel a lot faster
-        bullet.AddForce(shootPoint.forward * finalShootVelocity, ForceMode.Impulse);
+        bullet.velocity = shootPoint.forward * finalShootVelocity;
         Destroy(bullet.gameObject, 5.0f);
     }
 }
