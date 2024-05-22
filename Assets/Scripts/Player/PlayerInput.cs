@@ -11,6 +11,8 @@ public class PlayerInput : MonoBehaviour
     public float mouseY { get; private set; }
     public bool sprintHeld { get; private set; }
     public bool jumpPressed { get; private set; }
+    public bool primaryButtonPressed { get; private set; } // Left Click
+    public bool secondaryButtonPressed { get; private set; } // Right Click
 
     // Start is called before the first frame update
     void Start()
@@ -33,5 +35,7 @@ public class PlayerInput : MonoBehaviour
 
         sprintHeld = sprintHeld || Input.GetButton("Sprint");
         jumpPressed = jumpPressed | Input.GetButtonDown("Jump");
+        primaryButtonPressed = primaryButtonPressed || Input.GetButton("Fire1");
+        secondaryButtonPressed = secondaryButtonPressed || Input.GetButton("Fire2");
     }
 }

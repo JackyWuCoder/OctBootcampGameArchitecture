@@ -60,4 +60,9 @@ public class PlayerMovementBehaviour : MonoBehaviour
     {
         playerVelocity.y = value;
     }
+
+    public float GetForwardSpeed()
+    {
+        return playerInput.vertical * moveSpeed * moveMultiplier;
+    }
 }

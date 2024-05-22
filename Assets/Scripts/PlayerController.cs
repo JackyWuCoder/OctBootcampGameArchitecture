@@ -21,10 +21,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpVelocity;//Y
 
     [Header("Player Shoot")]
-    [SerializeField] private Rigidbody bulletPrefab;
-    [SerializeField] private Rigidbody rocketPrefab;
-    [SerializeField] private float shootForce;
-    [SerializeField] private Transform shootPoint;
+    [SerializeField] private Rigidbody bulletPrefab;//Y
+    [SerializeField] private Rigidbody rocketPrefab;//Y
+    [SerializeField] private float shootForce;//Y
+    [SerializeField] private Transform shootPoint;//Y
 
     [Header("Select Interaction")]
     [SerializeField] private Camera cam;
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
         camXRotation = Mathf.Clamp(camXRotation, -50.0f, 50.0f); // Restricts up/down rotation to 50 degrees
         
         cameraTransform.localRotation = Quaternion.Euler(camXRotation, 0, 0);
-    }
+    }//Y
 
     private void GroundCheck()
     {
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
             bullet.AddForce(shootPoint.forward * shootForce, ForceMode.Impulse);
             Destroy(bullet.gameObject, 5.0f);
         }
-    }
+    }//Y
 
     private void Interact()
     {
