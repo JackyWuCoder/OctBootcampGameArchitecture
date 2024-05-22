@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
         //Camera up/down movement
         camXRotation += Time.deltaTime * mouseY * turnSpeed * (invertMouse ? 1 : -1);
         camXRotation = Mathf.Clamp(camXRotation, -50.0f, 50.0f); // Restricts up/down rotation to 50 degrees
+        
         cameraTransform.localRotation = Quaternion.Euler(camXRotation, 0, 0);
     }
 
@@ -117,7 +118,7 @@ public class PlayerController : MonoBehaviour
         // A sphere, centered at position of ground, with radius of checkDistance, where groundMask is the collision object,
         // of ground we are checking.
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundMask);
-    }//Y
+    }
 
     private void JumpCheck()
     {

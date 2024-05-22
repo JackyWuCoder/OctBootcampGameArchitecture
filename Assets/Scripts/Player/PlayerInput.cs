@@ -29,6 +29,7 @@ public class PlayerInput : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
+
         sprintHeld = sprintHeld || Input.GetButton("Sprint");
     }
 }
