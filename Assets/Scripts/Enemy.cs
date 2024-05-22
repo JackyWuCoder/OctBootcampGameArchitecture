@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     [Range(0f, 5f)]
     [SerializeField] private float waitTime = 1f;
 
+    [SerializeField] private bool isRandom = false;
+
     private int currentTarget = 0;
     private NavMeshAgent agent;
 
@@ -41,14 +43,30 @@ public class Enemy : MonoBehaviour
         // Checking distance between enemy and target position
         if (agent.remainingDistance < accuracy)
         {
-            currentTarget++;
-            // Ensuring the current target does not exceed the number of target points
-            if (currentTarget >= targetPoints.Length)
-            {
-                currentTarget = 0;
-            }
-            StartCoroutine(PatrolAtPosition(waitTime));
+            SetNewTargetPosition(isRandom);
         }
+    }
+
+    private void SetNewTargetPosition(bool isRandom)
+    {
+        if (isRandom)
+        {
+            int randomInt = -1;
+            do {
+                randomInt = Random.Range(0, targetPoints.Length);
+            } while (randomInt == currentTarget);
+            currentTarget = randomInt;
+        }
+        else
+        {
+            currentTarget++;
+        }
+        // Ensuring the current target does not exceed the number of target points
+        if (currentTarget >= targetPoints.Length)
+        {
+            currentTarget = 0;
+        }
+        StartCoroutine(PatrolAtPosition(waitTime));
     }
 
     private IEnumerator PatrolAtPosition(float waitTime)
