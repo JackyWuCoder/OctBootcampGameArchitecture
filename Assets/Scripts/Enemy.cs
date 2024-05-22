@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private bool isRandom = false;
 
+    private bool isMoving = false;
     private int currentTarget = 0;
     private NavMeshAgent agent;
 
@@ -35,9 +36,12 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         GetTargetPositions();
         agent.destination = targetPoints[currentTarget].position;
+        isMoving = true;
+        StartCoroutine(PatrolAtPosition(waitTime));
     }
 
     // Update is called once per frame
+    /*
     void Update()
     {
         // Checking distance between enemy and target position
@@ -46,11 +50,13 @@ public class Enemy : MonoBehaviour
             SetNewTargetPosition(isRandom);
         }
     }
+    */
 
     private void SetNewTargetPosition(bool isRandom)
     {
         if (isRandom)
         {
+            Debug.Log("Randomising positions");
             int randomInt = -1;
             do {
                 randomInt = Random.Range(0, targetPoints.Length);
@@ -60,18 +66,26 @@ public class Enemy : MonoBehaviour
         else
         {
             currentTarget++;
+            // Ensuring the current target does not exceed the number of target points
+            if (currentTarget >= targetPoints.Length)
+            {
+                currentTarget = 0;
+            }
         }
-        // Ensuring the current target does not exceed the number of target points
-        if (currentTarget >= targetPoints.Length)
-        {
-            currentTarget = 0;
-        }
-        StartCoroutine(PatrolAtPosition(waitTime));
+        //StartCoroutine(PatrolAtPosition(waitTime));
     }
 
     private IEnumerator PatrolAtPosition(float waitTime)
     {
-        yield return new WaitForSeconds(waitTime);
+        while (isMoving)
+        {
+            yield return new WaitForSeconds(waitTime);
+            // Checking distance between enemy and target position
+            if (agent.remainingDistance < accuracy)
+            {
+                SetNewTargetPosition(isRandom);
+            }
+        }
         // Set new enemy position
         agent.destination = targetPoints[currentTarget].position;
     }
