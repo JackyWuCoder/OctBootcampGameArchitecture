@@ -47,21 +47,6 @@ public class Enemy : MonoBehaviour
         agent.destination = targetPoints[currentTarget].position;
         //isMoving = true;
         StartCoroutine(PatrolAtPosition(waitTime));
-        if (isIdle)
-        {
-            Idle();
-        }
-        else if (isPlayerFound)
-        {
-            if (isCloseToPlayer)
-            {
-                AttackPlayer();
-            }
-            else
-            {
-                FollowPlayer();
-            }
-        }
     }
 
     // Idle state of enemy
@@ -122,7 +107,21 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Idle();
+        if (isIdle)
+        {
+            Idle();
+        }
+        else if (isPlayerFound)
+        {
+            if (isCloseToPlayer)
+            {
+                AttackPlayer();
+            }
+            else
+            {
+                FollowPlayer();
+            }
+        }
     }
 
     public void GetTargetPositions()
@@ -174,7 +173,14 @@ public class Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        if (isIdle)
+        {
+            Gizmos.color = Color.red;
+        }
+        else
+        {
+            Gizmos.color = Color.green;
+        }
         Gizmos.DrawWireSphere(enemyEye.position, checkRadius);
         Gizmos.DrawWireSphere(enemyEye.position + enemyEye.forward * playerDistance, checkRadius);
         Gizmos.DrawLine(enemyEye.position, enemyEye.position + enemyEye.forward * playerDistance);
