@@ -15,6 +15,9 @@ public class PooledObject : MonoBehaviour
     public void SetObjectPool(ObjectPool pool)
     {
         associatedPool = pool;
+        timer = 0;
+        destroyTime = 0;
+        setToDestroy = false;
     }
 
     // Update is called once per frame
