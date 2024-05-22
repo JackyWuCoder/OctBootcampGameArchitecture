@@ -7,16 +7,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Movement")]
-    [SerializeField] private float moveSpeed = 10.0f;
+    [SerializeField] private float moveSpeed = 10.0f;//Y
     [SerializeField] private float turnSpeed = 10.0f;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private bool invertMouse;
-    [SerializeField] private float sprintMultiplier = 2.0f;
+    [SerializeField] private float sprintMultiplier = 2.0f; //Y
 
     [Header("Player Jump")]
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundMask;
-    [SerializeField] private float groundCheckDistance;
+    [SerializeField] private Transform groundCheck;//Y
+    [SerializeField] private LayerMask groundMask;//Y
+    [SerializeField] private float groundCheckDistance;//Y
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpVelocity;
 
@@ -38,13 +38,13 @@ public class PlayerController : MonoBehaviour
 
     private bool isPicked = false;
 
-    private CharacterController characterController;
-    private float horizontalInput, verticalInput;
-    private float mouseX, mouseY;
-    private float moveMultiplier = 1.0f;
+    private CharacterController characterController;//Y
+    private float horizontalInput, verticalInput;//Y
+    private float mouseX, mouseY;//Y
+    private float moveMultiplier = 1.0f;//Y
     private float camXRotation;
-    private bool isGrounded;
-    private Vector3 playerVelocity;
+    private bool isGrounded;//Y
+    private Vector3 playerVelocity;//Y
 
     // Interaction Raycasts
     private RaycastHit hit;
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>();//Y
     }
 
     // Start is called before the first frame update
@@ -81,12 +81,12 @@ public class PlayerController : MonoBehaviour
 
     private void GetInput()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-        moveMultiplier = Input.GetButton("Sprint") ? sprintMultiplier : 1.0f;
-    }
+        horizontalInput = Input.GetAxis("Horizontal");//Y
+        verticalInput = Input.GetAxis("Vertical");//Y
+        mouseX = Input.GetAxis("Mouse X");//Y
+        mouseY = Input.GetAxis("Mouse Y");//Y
+        moveMultiplier = Input.GetButton("Sprint") ? sprintMultiplier : 1.0f;//Y
+    }//Y
 
     private void MovePlayer()
     {
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravity * Time.deltaTime;
         characterController.Move(playerVelocity * Time.deltaTime);
-    }
+    }//Y
 
     private void RotatePlayer()
     {
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
         // A sphere, centered at position of ground, with radius of checkDistance, where groundMask is the collision object,
         // of ground we are checking.
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundMask);
-    }
+    }//Y
 
     private void JumpCheck()
     {
